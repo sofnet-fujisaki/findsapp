@@ -1,0 +1,69 @@
+<!-- header.html -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192x192.png">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+        console.log('サービスワーカーが登録されました:', registration);
+      }).catch((error) => {
+        console.log('サービスワーカーの登録に失敗しました:', error);
+      });
+    }
+  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+     <script src="js/script.js"></script>
+<header class="headerarea" style="">
+   <nav>
+        <button class="menu-button" onclick="openMenu()">☰<br>menu</button>
+        <div class="logo"><a href="../findsapp/index.php"><img src="images/logo_finds_odaoku.png" alt="Finds 小田億"></a></div>
+        <!--<a href="#" class="login"><i class="fas fa-user"></i><br>login</a>-->
+    </nav>
+</header>
+<!-- ハンバーガーメニュー -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="side-menu" id="sideMenu">
+  <div class="menu-header">
+    <img src="images/logo_finds_odaoku.png" alt="Finds 小田億" class="menu-logo">
+  </div>
+
+  <div class="menu-section">
+    <div class="menu-section-title">コンテンツ</div>
+    <a href="#" class="menu-item"><i class="fas fa-ad"></i>今週のチラシ <span>›</span></a>
+    <a href="#" class="menu-item"><i class="fas fa-calendar-alt"></i>イベント情報 <span>›</span></a>
+    <a href="#" class="menu-item"><i class="fas fa-crown"></i>おすすめ商品 <span>›</span></a>
+    <a href="" class="menu-item"><i class="fas fa-shopping-cart"></i>オンラインショップ <span>›</span></a>
+  </div>
+
+  <div class="menu-section">
+    <div class="menu-section-title">会員メニュー</div>
+    <a href="member.php" class="menu-item"><i class="fas fa-id-card"></i>会員証（バーコード） <span>›</span></a>
+    <a href="#" class="menu-item"><i class="fas fa-couch"></i>家具の選び方 <span>›</span></a>
+    <a href="#" class="menu-item"><i class="fas fa-sign-in-alt"></i>ログイン・新規登録<br><small>（ログイン後：ログアウト）</small><span>›</span></a>
+  </div>
+
+  <div class="menu-section">
+    <div class="menu-section-title">その他</div>
+    <a href="#" class="menu-item"><i class="fas fa-info-circle"></i>FAQ <span>›</span></a>
+    <a href="#" class="menu-item"><i class="fas fa-file-alt"></i>利用規約 <span>›</span></a>
+    <a href="#" class="menu-item"><i class="fas fa-shield-alt"></i>Privacy Policy <span>›</span></a>
+  </div>
+</nav>
+<script>
+    function setupHamburgerMenu() {
+      window.openMenu = function () {
+        document.getElementById('sideMenu').classList.add('open');
+        document.getElementById('menuOverlay').style.display = 'block';
+      };
+  
+      document.getElementById('menuOverlay').addEventListener('click', () => {
+        document.getElementById('sideMenu').classList.remove('open');
+        document.getElementById('menuOverlay').style.display = 'none';
+      });
+    }
+  </script>

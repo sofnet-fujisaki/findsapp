@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テストアプリ</title>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+        console.log('サービスワーカーが登録されました:', registration);
+      }).catch((error) => {
+        console.log('サービスワーカーの登録に失敗しました:', error);
+      });
+    }
+  </script>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      font-family: 'Noto Sans Japanese',"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif!important;
+      background-color: #EAE0D5;
+      padding: 0;
+      color: #353841;
+    }
+  </style>
+</head>
+<body>
+  <div id="common-header"></div> 
+
+<!-- 会員証カード -->
+<div class="card">
+    <div class="name">ソフネット　太郎 様 <i class="fas fa-lightbulb"></i></div>
+    <img class="barcode" src="images/barcode.png" alt="バーコード" />
+    <div class="member-id">会員証2008503599991</div>
+    <div class="points">
+      <span class="label"><i class="fas fa-circle" style="color:red"></i> 保有ポイント</span>
+      <div class="point-value">999 <span>ポイント</span></div>
+      <div class="refresh">
+        <i class="fas fa-rotate-right"></i><br>更新
+      </div>
+    </div>
+  </div>
+
+  <!-- 補足情報 -->
+  <div class="info-note"><i class="fas fa-question-circle"></i> ポイント制度について</div>
+
+    <!-- ボタンアイコンメニュー -->
+    <div class="circle-buttons">
+        <div class="circle-btn"><i class="fas fa-history"></i><span>購入履歴</span></div>
+        <div class="circle-btn"><i class="fas fa-database"></i><span>ポイント<br>履歴</span></div>
+        <div class="circle-btn"><i class="fas fa-ticket-alt"></i><span>クーポン</span></div>
+        <div class="circle-btn"><i class="fas fa-user-edit"></i><span>会員情報<br>変更</span></div>
+        <div class="circle-btn"><i class="fas fa-lock"></i><span>パスワード<br>変更</span></div>
+        <div class="circle-btn"><i class="fas fa-sign-out-alt"></i><span>ログアウト</span></div>
+    </div>
+
+  <!-- ヘッダー読み込みとSwiper初期化 -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('common-header').innerHTML = data;
+
+      });
+    // DOMが挿入された後にイベントを登録
+    document.getElementById('menuOverlay').addEventListener('click', () => {
+        document.getElementById('sideMenu').classList.remove('open');
+        document.getElementById('menuOverlay').style.display = 'none';
+    });
+
+</script>
+</body>
+</html>

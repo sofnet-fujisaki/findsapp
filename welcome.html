@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テストアプリ</title>
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('common-header').innerHTML = data;
+      });
+  </script>
+</head>
+<style>
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2F3647; 
+  div.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img.findslogo{
+    width: 200px; 
+    height: auto; 
+    margin-bottom: 200px; 
+  }
+  img.odaokulogo{
+    width: 80px;
+    height: auto; 
+  }
+  .headerarea{display:none!important;}
+</style>
+<body>
+  <div id="common-header"></div> 
+  <div class="top">
+    <img src="images/logo_finds_white.png" alt="Finds" class="findslogo">
+    <img src="images/logo_odaoku.png" alt="小田億株式会社" class="odaokulogo">
+  </div>
+</body>
+</html>

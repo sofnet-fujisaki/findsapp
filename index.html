@@ -3,25 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>テストPWAアプリ</title>
+  <title>テストアプリ</title>
 
-  <!-- manifestとアイコンのリンク -->
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icons/icon-192x192.png">
-
-  <!-- サービスワーカー登録 -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-        console.log('サービスワーカーが登録されました:', registration);
-      }).catch((error) => {
-        console.log('サービスワーカーの登録に失敗しました:', error);
-      });
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      font-family: 'Noto Sans Japanese',"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif!important;
+      background-color: #EAE0D5;
+      padding: 0;
+      color: #353841;
     }
-  </script>
+  </style>
 </head>
 <body>
-  <h1>ウェルカム！このサイトはPWAにします！</h1>
-  <p>このWebページをPWAに変換するよ。</p>
+  <div id="common-header"></div> 
+
+  <!-- Swiperスライダー -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><a href="https://www.odaokufinds.com/event/messe/messe38?in=1&ev=1286"><img src="images/slide1.jpg" alt="スライド1"></a></div>
+      <div class="swiper-slide"><a href="https://www.e-finds.net/tokusyuu.php?seqno=34"><img src="images/slide2.jpg" alt="スライド2"></a></div>
+      <div class="swiper-slide"><a href="https://www.e-finds.net/tokusyuu.php?seqno=30"><img src="images/slide3.jpg" alt="スライド3"></a></div>
+      <div class="swiper-slide"><a href="https://www.e-finds.net/tokusyuu.php?seqno=22"><img src="images/slide4.jpg" alt="スライド3"></a></div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- 丸ボタン -->
+  <div class="circle-buttons">
+    <a href="member.html" class="circle-btn">
+      <i class="fas fa-user"></i>
+      <span>Members</span>
+    </a>
+    <div class="circle-btn"><i class="fas fa-newspaper"></i><span>News</span></div>
+    <div class="circle-btn"><i class="fas fa-ad"></i><span>チラシ</span></div>
+    <div class="circle-btn"><i class="fas fa-calendar"></i><span>イベント</span></div>
+    <div class="circle-btn"><i class="fas fa-shopping-cart"></i><span>Online Shop</span></div>
+    <div class="circle-btn"><i class="fas fa-couch"></i><span>家具の選び方</span></div>
+  </div>
+
+  <!-- ヘッダー読み込みとSwiper初期化 -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('common-header').innerHTML = data;
+
+        setupHamburgerMenu();
+        // Swiper用スクリプトを挿入
+        const swiperScript = document.createElement('script');
+        swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+        swiperScript.onload = () => {
+          new Swiper(".mySwiper", {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            autoplay: {
+              delay: 4000,
+              disableOnInteraction: false,
+            },
+          });
+        };
+        document.body.appendChild(swiperScript);
+      });
+  </script>
 </body>
 </html>
